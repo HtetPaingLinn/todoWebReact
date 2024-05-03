@@ -2,40 +2,20 @@ import React from "react";
 import EmprtList from "./EmprtList";
 import List from "./List";
 
-function ListGroup() {
-  const tasks = [
-    {
-      id: 1,
-      title: "Read JS book",
-      isDone: true,
-    },
-    {
-      id: 2,
-      title: "Finding Job",
-      isDone: false,
-    },
-    {
-      id: 3,
-      title: "Meet client",
-      isDone: false,
-    },
-    {
-      id: 4,
-      title: "Study Japanese",
-      isDone: true,
-    },
-    {
-      id: 5,
-      title: "Prepare for meeting",
-      isDone: false,
-    },
-  ];
+function ListGroup(props) {
   return (
     <div id="listGroup">
       <EmprtList />
 
-      {tasks.map((task) => (
-        <List task={task.title} isDone={task.isDone} />
+      {props.tasks.map((task) => (
+        <List
+          deleteTask = {props.deleteTask}
+          checkTask={props.checkTask}
+          key={task.id}
+          task={task.title}
+          isDone={task.isDone}
+          id ={task.id}
+        />
       ))}
 
       {/* <List task="San" isDone = {true}/>

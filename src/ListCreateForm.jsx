@@ -1,14 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function ListCreateForm() {
+function ListCreateForm(props) {
+
+  const [text,setText] = useState("");
+
+  const handleText = (event) => {
+    setText(event.target.value);
+  }
+
+  const handleAddBtn = () => {
+    props.addTask(text);
+    setText ("");
+  }
+
   return (
     <div className="flex mb-5">
     <input
       className="flex-grow border border-neutral-700 h-14 px-3 focus-visible:outline-none"
       type="text"
       id="textInput"
+      value={text}
+      onChange={handleText}
     />
     <button
+    onClick={handleAddBtn}
       id="addBtn"
       className="h-14 w-14 bg-neutral-700 text-white flex justify-center items-center"
     >

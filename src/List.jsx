@@ -1,13 +1,26 @@
 import React from "react";
 
-function List(tasks) {
+const List = (tasks) => {
+
+ 
+  const handleCheckBox = () => {
+    tasks.checkTask(tasks.id)
+  }
+
+  const HandleDeleteBtn = () => {
+    if(confirm("Are you sure you want to delete task?")){
+      tasks.deleteTask(tasks.id);
+    }
+  }
+
   return (
-    <div className={`group animate__animated animate__fadeInLeft border mb-3 overflow-hidden border-neutral-700 p-5 flex justify-between items-center ${tasks.isDone && 'line-through bg-gray-200'}`}>
+    <div className={`group animate__animated animate__fadeInLeft border mb-3 overflow-hidden border-neutral-700 p-5 flex justify-between items-center duration-200 ${tasks.isDone && 'line-through bg-gray-200 opacity-60 scale-95 pointer-events-none'}`}>
       <div className="content flex items-center gap-3">
         <input
           className="list-check accent-neutral-700 w-4 h-4"
           type="checkbox"
           checked = {tasks.isDone}
+          onChange={handleCheckBox}
         />
         <div className="list-text">{tasks.task}</div>
       </div>
@@ -28,7 +41,7 @@ function List(tasks) {
             />
           </svg>
         </button>
-        <button className="list-del duration-300 active:scale-75">
+        <button onClick={HandleDeleteBtn} className="list-del duration-300 active:scale-75">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
