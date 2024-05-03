@@ -9,6 +9,7 @@ function ListGroup(props) {
 
       {props.tasks.map((task) => (
         <List
+        editTask={props.editTask}
           deleteTask = {props.deleteTask}
           checkTask={props.checkTask}
           key={task.id}
