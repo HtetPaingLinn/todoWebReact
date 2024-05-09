@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import Swal from "sweetalert2";
+import toast, { Toaster } from 'react-hot-toast';
 
 const List = (tasks) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -10,10 +12,32 @@ const List = (tasks) => {
   };
 
   const HandleDeleteBtn = () => {
-    if (window.confirm("Are you sure you want to delete task?")) {
-      tasks.deleteTask(tasks.id);
-    }
+    // if (window.confirm("Are you sure you want to delete task?")) {
+    //   tasks.deleteTask(tasks.id);
+    // }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        tasks.deleteTask(tasks.id);
+        toast.success("Task Deleted", {position: "button-right", autoClose: 2000, hideProgressBar: true, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined,});
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success"
+        // });
+      }
+    });
   };
+
+  
+  
 
   const HandleEditBtn = () => {
     setIsEdit(true);

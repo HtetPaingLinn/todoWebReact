@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import ForHeading from "./ForHeading";
 import ListCreateForm from "./ListCreateForm";
 import Status from "./Status";
 import ListGroup from "./ListGroup";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   // const tasks = [
@@ -53,6 +54,7 @@ const App = () => {
       <ListCreateForm addTask={addTask} />
       <Status tasks={tasks} />
       <ListGroup editTask={editTask} deleteTask={deleteTask} checkTask={checkTask} tasks={tasks} />
+      <Toaster/>
     </div>
   );
 };

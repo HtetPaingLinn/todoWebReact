@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast';
 
 function ListCreateForm(props) {
 
@@ -11,6 +12,13 @@ function ListCreateForm(props) {
   const handleAddBtn = () => {
     props.addTask(text);
     setText ("");
+    toast.success("Task Added", {position: "top-right", autoClose: 2000, hideProgressBar: true, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, });
+  }
+
+  const btnEnter = (event) => {
+    if (event.key === "Enter") {
+      handleAddBtn();
+    }
   }
 
   return (
@@ -21,6 +29,7 @@ function ListCreateForm(props) {
       id="textInput"
       value={text}
       onChange={handleText}
+      onKeyUp={btnEnter}
     />
     <button
     onClick={handleAddBtn}
